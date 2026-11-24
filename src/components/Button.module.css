@@ -1,0 +1,31 @@
+.btn {
+  --skew: 12px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 54px;
+  padding: 0 30px;
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 19px;
+  text-decoration: none;
+  clip-path: polygon(var(--skew) 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
+  /* transform y filter: hover. opacity, translate y scale: animación de entrada (reveal.css) */
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    opacity 0.7s var(--ease-out) var(--d, 0s),
+    translate 0.9s var(--ease-pop) var(--d, 0s),
+    scale 0.9s var(--ease-pop) var(--d, 0s);
+}
+.btn:hover { transform: translateX(3px); filter: brightness(1.08); }
+.btn:focus-visible { outline: none; filter: brightness(1.1); box-shadow: inset 0 -4px 0 currentColor; }
+
+.oro { background: var(--oro); color: var(--grafito); }
+.oro:hover { color: var(--grafito); }
+.grafito { background: var(--grafito); color: var(--blanco); }
+.grafito:hover { color: var(--blanco); }
+.rojo { background: var(--rojo); color: var(--blanco); }
+.rojo:hover { color: var(--blanco); }
+.blanco { background: var(--blanco); color: var(--grafito); }
+.blanco:hover { color: var(--grafito); }

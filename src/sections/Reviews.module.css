@@ -1,0 +1,19 @@
+.section { position: relative; overflow: hidden; background: var(--blanco); padding: var(--section-y) 0; }
+.lines { right: -90px; top: -70px; width: 220px; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 48px; }
+.more { font-size: 17px; font-weight: 700; }
+.review { position: relative; display: flex; flex-direction: column; gap: 16px; padding-left: 30px; }
+.review::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 10px;
+  background: var(--oro);
+  transform: skewX(-12deg) scaleY(0);
+  transform-origin: top;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--d, 0s) + 0.2s);
+}
+.review[data-in]::before { transform: skewX(-12deg) scaleY(1); }
+@media (prefers-reduced-motion: reduce) { .review::before { transform: skewX(-12deg); } }
+.review blockquote { font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; text-transform: none; }
+.review figcaption { font-size: 16px; font-weight: 700; color: var(--texto-suave); }

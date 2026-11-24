@@ -1,0 +1,23 @@
+.hero { position: relative; overflow: hidden; padding: clamp(56px, 8vw, 96px) 0 clamp(80px, 10vw, 128px); }
+.lines { left: -4%; width: 108%; bottom: 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 64px; align-items: center; }
+.copy { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.title { font-size: clamp(56px, 8vw, 112px); line-height: 0.9; }
+.text {
+  font-size: 20px;
+  max-width: 46ch;
+  background: var(--blanco);
+  padding: 18px 20px;
+  border-radius: var(--radius);
+}
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.photo {
+  position: relative;
+  padding: 14px 14px 18px;
+  background: var(--blanco);
+  box-shadow: 0 18px 40px rgba(29, 27, 30, 0.25);
+  transform: rotate(1.5deg);
+}
+.frame { overflow: hidden; }
+.photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 65% 40%; scale: 1.12; translate: 0 var(--parallax, 0px); }
+.photo figcaption { padding-top: 12px; font-size: 15px; color: var(--texto-suave); }

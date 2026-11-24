@@ -1,0 +1,121 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--header-bg);
+  border-bottom: 3px solid var(--oro);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: var(--header-h);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  transition: padding 0.25s ease;
+}
+.brand { width: 210px; flex: 0 0 auto; transition: width 0.25s ease; }
+.compact .bar { padding-top: 6px; padding-bottom: 6px; }
+.compact .brand { width: 160px; }
+
+.panel { display: flex; align-items: center; gap: 28px; }
+.panel ul { display: flex; gap: 28px; list-style: none; padding: 0; }
+.panel ul a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+}
+.panel ul a:hover { color: var(--oro); border-color: var(--oro); }
+
+/* ---------- Botón de menú: dos llaves fijas ---------- */
+.toggle {
+  display: none;
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.wrench {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 38px;
+  height: 11px;
+  overflow: visible;
+  margin: -5.5px 0 0 -19px; /* centra la llave (38 × 11) en el botón */
+  /* Al abrir: giro con un pequeño rebote elástico */
+  transition: transform 0.5s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+/* Cerrado: dos llaves paralelas, como las rayas de un menú */
+.wrenchTop { transform: translateY(-7px); }
+.wrenchBottom { transform: translateY(7px) scaleX(-1); transition-delay: 0.04s; }
+/* Abierto: se juntan en el centro y se cruzan formando una X */
+.toggle[aria-expanded='true'] .wrenchTop { transform: translateY(0) rotate(-45deg); }
+.toggle[aria-expanded='true'] .wrenchBottom { transform: translateY(0) rotate(45deg) scaleX(-1); }
+.toggle:hover .wrench { filter: brightness(1.12); }
+
+/* ---------- Menú desplegable en celular ---------- */
+@media (max-width: 1000px) {
+  .toggle { display: block; }
+  .brand { width: 170px; }
+
+  /* La nav es la "ventana" debajo del header; el panel cae desde arriba */
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 3px; /* debajo de la línea dorada */
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    transition: visibility 0s linear 0.35s;
+  }
+  .nav.open { pointer-events: auto; visibility: visible; transition-delay: 0s; }
+
+  .panel {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px var(--gutter) 32px;
+    background: var(--header-bg);
+    border-bottom: 3px solid var(--oro);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(-105%);
+    /* Al cerrar: sube rápido, sin rebote */
+    transition: transform 0.32s cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+  .open .panel {
+    transform: translateY(0);
+    /* Al abrir: cae con un rebote suave */
+    transition: transform 0.55s cubic-bezier(0.22, 1.15, 0.36, 1);
+  }
+  .panel ul { flex-direction: column; gap: 4px; }
+  .panel ul a { font-size: 20px; display: inline-block; padding: 8px 0; }
+
+  /* Cada opción entra un poco después de la anterior */
+  .panel li,
+  .cta {
+    opacity: 0;
+    transform: translateY(-14px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .open .panel li,
+  .open .cta {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease calc(0.1s + var(--i) * 0.04s),
+      transform 0.45s cubic-bezier(0.3, 1.2, 0.5, 1) calc(0.1s + var(--i) * 0.04s);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrench, .panel, .panel li, .cta, .open .panel, .open .panel li, .open .cta { transition: none !important; }
+}

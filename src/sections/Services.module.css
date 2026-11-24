@@ -1,0 +1,40 @@
+.section { position: relative; overflow: hidden; padding: var(--section-y) 0; }
+.lines { right: -120px; top: -200px; width: 380px; }
+.head { align-items: end; margin-bottom: 48px; }
+.board {
+  list-style: none;
+  margin: 0;
+  padding: clamp(16px, 3vw, 32px);
+  border: 3px solid var(--grafito);
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 28px 24px;
+  background: rgba(245, 246, 243, 0.6);
+  border-radius: 8px;
+}
+.item p { font-size: 16px; line-height: 1.5; color: var(--texto-suave); }
+.tool { position: relative; width: 100%; max-width: 240px; }
+/* La silueta dorada es la "sombra" pintada en el tablero */
+.shadow { position: absolute; left: 6px; top: 6px; }
+/* Las herramientas se dibujan cuando aparece la tarjeta */
+.tool :is(path, circle) {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--d, 0s) + 0.2s);
+}
+.item[data-in] .tool :is(path, circle) { stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce) { .tool :is(path, circle) { stroke-dashoffset: 0; } }
+.tool > svg:last-child { position: relative; }
+.item:hover .tool > svg:last-child { transform: translate(-3px, -5px) rotate(-2deg); transition: transform 0.2s ease; }
+
+@media (max-width: 1000px) { .board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .board { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) { .lines { display: none; } }

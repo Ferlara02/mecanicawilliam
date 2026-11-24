@@ -1,0 +1,14 @@
+.lines {
+  position: absolute;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+  height: auto;
+  max-width: none;
+}
+/* Cada trazo arranca un poco después del anterior (--d) y todos terminan juntos */
+.lines path,
+.lines ellipse {
+  stroke-dasharray: 1;
+  stroke-dashoffset: clamp(0, calc(1 + var(--d) - var(--p, 1) * 1.6), 1);
+}

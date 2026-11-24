@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--chapa);
+  color: var(--grafito);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: var(--oro-oscuro); }
+a:hover { color: var(--grafito); }
+:focus-visible { outline: 3px solid var(--oro); outline-offset: 3px; }
+h1, h2, h3, p, figure, blockquote, ol, ul { margin: 0; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+
+/* Títulos: Kanit Black Italic en mayúsculas */
+.display {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+}
+
+.lead { font-size: 19px; line-height: 1.55; color: var(--texto-suave); max-width: 56ch; }
+
+/* Fondo de tablero perforado */
+.peg {
+  background-color: var(--peg);
+  background-image: radial-gradient(circle, var(--peg-hole) 3px, transparent 3.6px);
+  background-size: 30px 30px;
+}
+
+/* Etiqueta tipo rotuladora (Dymo) */
+.dymo {
+  display: inline-block;
+  background: var(--grafito);
+  color: var(--blanco);
+  font: 700 15px/1.25 var(--f-body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 9px 14px 8px;
+  border-radius: 3px;
+}
+
+/* Cinta de papel dorada para fotos y notas */
+.tape {
+  position: absolute;
+  width: 96px;
+  height: 28px;
+  background: rgba(223, 186, 105, 0.85);
+  pointer-events: none;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px; top: -60px;
+  z-index: 100;
+  background: var(--oro);
+  color: var(--grafito);
+  padding: 12px 18px;
+  font-weight: 700;
+}
+.skip-link:focus { top: 16px; }
+
+/* Grillas reutilizables */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 1000px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .grid-2 { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+}
+@media (max-width: 600px) {
+  .grid-3, .grid-4 { grid-template-columns: minmax(0, 1fr); }
+}

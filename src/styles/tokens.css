@@ -1,0 +1,29 @@
+/* Identidad de marca: cambiá acá los colores, fuentes y medidas de toda la web. */
+:root {
+  /* Colores de marca */
+  --oro: #dfba69;          /* Oro William: viene del logo original */
+  --oro-linea: #c9a04e;    /* Líneas del auto sobre fondos claros */
+  --oro-oscuro: #8a6a1f;   /* Links y textos dorados sobre fondo claro (contraste AA) */
+  --grafito: #1d1b1e;      /* Texto principal y fondos oscuros (color secundario de la web vieja) */
+  --carbon: #343434;       /* Header y contacto */
+  --chapa: #daddda;        /* Fondo general */
+  --peg: #d3d6d3;          /* Tablero perforado */
+  --peg-hole: #a9aeab;
+  --blanco: #f5f6f3;
+  --texto-suave: #4e555e;
+  --texto-suave-oscuro: #cfccd2;
+  --rojo: #d2281e;         /* Solo en las secciones de rally */
+  --header-bg: #1d1b1e;    /* Header oscuro, como el de la web vieja */
+
+  /* Tipografías */
+  --f-display: 'Kanit', 'Arial Narrow', sans-serif;
+  --f-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --f-logo: 'Archivo', 'Arial Black', sans-serif;
+
+  /* Medidas */
+  --container: 1240px;
+  --gutter: clamp(20px, 4vw, 32px);
+  --section-y: clamp(80px, 10vw, 128px);
+  --header-h: 84px;
+  --radius: 6px;
+}
