@@ -11,6 +11,15 @@ npm run build     # versión final en dist/
 npm run preview   # para ver el build
 ```
 
+## Publicación (Cloudflare Pages)
+
+La web se publica sola en Cloudflare Pages cada vez que se hace `git push` a `main`, desde el repo `Ferlara02/mecanicawilliam`.
+
+- Rama `main` → producción.
+- Cualquier otra rama → versión de prueba con su propia URL (sirve para mostrar cambios antes de publicarlos).
+- Configuración en Cloudflare: comando de build `npm run build`, carpeta de salida `dist`. La versión de Node está fijada en `.node-version`.
+- `public/_headers` define la caché de los archivos y algunas cabeceras de seguridad.
+
 ## Dónde cambiar cada cosa
 
 | Qué | Dónde |
