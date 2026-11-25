@@ -9,6 +9,7 @@ import RallyTitles from './sections/RallyTitles.jsx'
 import Reviews from './sections/Reviews.jsx'
 import Contact from './sections/Contact.jsx'
 import { useRevealOnScroll } from './hooks/reveal.js'
+import Lightbox from './components/Lightbox.jsx'
 
 // Orden de las secciones de la home. Para mover o quitar una, cambiá esta lista.
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Reviews />
       </main>
       <Contact />
+      <Lightbox />
     </>
   )
 }

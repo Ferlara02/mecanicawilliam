@@ -1,0 +1,126 @@
+.root { position: fixed; inset: 0; z-index: 200; }
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 19, 22, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  cursor: zoom-out;
+}
+.shown .backdrop { opacity: 1; }
+
+/* La caja viaja desde la foto original hasta el centro */
+.stage {
+  position: fixed;
+  margin: 0;
+  transition:
+    left 0.52s cubic-bezier(0.2, 0.8, 0.2, 1),
+    top 0.52s cubic-bezier(0.2, 0.8, 0.2, 1),
+    width 0.52s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.52s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.6s cubic-bezier(0.34, 1.3, 0.5, 1),
+    border-radius 0.52s ease,
+    box-shadow 0.52s ease,
+    clip-path 0.52s ease;
+}
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; transition: object-position 0.52s ease, scale 0.52s ease; }
+/* Al cerrar, sin rebote: la foto vuelve derecho a su lugar y coincide justo con la original */
+.closing .stage { transition-timing-function: cubic-bezier(0.45, 0, 0.25, 1); transition-duration: 0.42s; }
+.closing .stage { animation: fundido 0.14s ease 0.3s forwards; }
+@keyframes fundido { to { opacity: 0; } }
+.closing .polaroidImg { transition-timing-function: cubic-bezier(0.45, 0, 0.25, 1); transition-duration: 0.42s; }
+.closing .polaroidCaption { transition-delay: 0s; transition-duration: 0.15s; }
+
+/* Foto común: bordes redondeados y sombra profunda al ampliarse */
+.photo { overflow: hidden; border-radius: 2px; }
+.shown .photo { border-radius: 10px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(223, 186, 105, 0.35); }
+
+.caption {
+  position: fixed;
+  left: 50%;
+  translate: -50% 8px;
+  width: min(92vw, 720px);
+  text-align: center;
+  color: var(--texto-suave-oscuro);
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.35s ease 0.25s, translate 0.35s ease 0.25s;
+}
+.shown .caption { opacity: 1; translate: -50% 0; }
+
+/* Polaroid: marco blanco con cinta, la foto se revela y el epígrafe aparece escrito abajo */
+.polaroid {
+  background: var(--blanco);
+  box-shadow: 0 18px 40px rgba(29, 27, 30, 0.25);
+}
+.shown .polaroid { box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6); }
+.polaroid :global(.tape) { position: absolute; z-index: 2; width: 110px; height: 30px; transition: width 0.5s ease, height 0.5s ease; }
+.polaroidImg {
+  position: absolute;
+  overflow: hidden;
+  background: #222;
+  transition: left 0.52s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.52s cubic-bezier(0.2, 0.8, 0.2, 1), top 0.52s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.52s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.polaroidImg img { filter: none; }
+.shown .polaroidImg img { animation: revelar 1.6s ease-out 0.2s both; }
+@keyframes revelar {
+  0% { filter: sepia(0.6) saturate(0.2) brightness(1.7) contrast(0.7) blur(1.5px); }
+  60% { filter: sepia(0.15) saturate(0.85) brightness(1.1) contrast(0.95) blur(0); }
+  100% { filter: none; }
+}
+.polaroidCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(20px, 3vw, 30px);
+  color: var(--grafito);
+  opacity: 0;
+  translate: 0 6px;
+  transition: opacity 0.4s ease 0.45s, translate 0.4s ease 0.45s;
+}
+.shown .polaroidCaption { opacity: 1; translate: 0 0; }
+
+/* Cruz para cerrar */
+.close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(223, 186, 105, 0.6);
+  background: rgba(29, 27, 30, 0.7);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  scale: 0.7;
+  transition: opacity 0.3s ease, scale 0.35s cubic-bezier(0.34, 1.4, 0.5, 1), background 0.2s ease, border-color 0.2s ease;
+}
+.shown .close { opacity: 1; scale: 1; }
+.close svg { width: 22px; height: 22px; fill: none; stroke: var(--oro); stroke-width: 2.6; stroke-linecap: round; transition: rotate 0.3s ease; }
+.close:hover { background: var(--grafito); border-color: var(--oro); }
+.close:hover svg { rotate: 90deg; }
+.close:focus-visible { outline: 3px solid var(--oro); outline-offset: 3px; }
+
+@media (max-width: 700px) {
+  .polaroid :global(.tape) { width: 70px; height: 22px; top: -11px !important; }
+  .polaroidCaption { height: 54px; }
+  .close { top: 12px; right: 12px; width: 46px; height: 46px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage, .backdrop, .caption, .polaroidCaption, .close, .polaroidImg { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+  .shown .polaroidImg img { animation: none; }
+}

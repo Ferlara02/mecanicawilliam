@@ -89,9 +89,9 @@ export const titles = [
 
 export const rallyPhotos = [
   { src: rally90s, alt: 'Auto rojo del equipo en una largada de rally en los años noventa' },
-  { src: podio2016, alt: 'Pilotos levantando los trofeos del campeonato 2016' },
+  { src: podio2016, alt: 'Matias Brenzoni y Federico Baratella levantando los trofeos del campeonato 2016' },
   { src: equipoAutos, alt: 'El equipo del taller junto a los autos de competición' },
-  { src: equipoMotor, alt: 'El equipo en el taller con un motor armado' },
+  { src: equipoMotor, alt: 'El equipo en el taller colocando un motor' },
 ]
 
 export const reviews = [

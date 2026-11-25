@@ -30,7 +30,7 @@ export default function RallyHero() {
           </div>
         </div>
         <div className={styles.photoWrap} data-reveal="photo-r" data-delay="0.1">
-          <img ref={photoRef} className={styles.photo} src={rally517} alt="Auto de rally número 517 preparado en el taller" width="1600" height="825" loading="lazy" />
+          <img ref={photoRef} className={styles.photo} src={rally517} alt={'Ford Ka N2 de los Torres en la "Cueva"'} width="1600" height="825" loading="lazy" data-zoom tabIndex={0} />
         </div>
       </div>
       <div className={styles.stripes} data-reveal="sweep" data-delay="0.2"><Stripes /></div>

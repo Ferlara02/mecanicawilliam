@@ -40,7 +40,7 @@ export default function RallyTitles() {
         </ul>
         <ul className={`grid-4 ${styles.photos}`} data-stagger="photo" data-delay="0.1" data-step="0.12">
           {rallyPhotos.map((ph) => (
-            <li key={ph.src}><img src={ph.src} alt={ph.alt} width="400" height="200" loading="lazy" /></li>
+            <li key={ph.src}><img src={ph.src} alt={ph.alt} width="400" height="200" loading="lazy" data-zoom tabIndex={0} /></li>
           ))}
         </ul>
       </div>

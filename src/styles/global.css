@@ -105,3 +105,7 @@ h1, h2, h3, p, figure, blockquote, ol, ul { margin: 0; }
 @media (max-width: 600px) {
   .grid-3, .grid-4 { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Fotos que se amplían al tocarlas (ver components/Lightbox.jsx) */
+img[data-zoom] { cursor: zoom-in; }
+img[data-zoom]:focus-visible { outline: 3px solid var(--oro); outline-offset: 3px; }
