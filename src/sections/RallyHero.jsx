@@ -2,15 +2,11 @@ import Button from '../components/Button.jsx'
 import CarLines from '../components/CarLines.jsx'
 import Stripes from '../components/Stripes.jsx'
 import { Logo } from '../components/Logo.jsx'
-import { useRef } from 'react'
-import { useParallax } from '../hooks/scroll.js'
 import { whatsappUrl } from '../data/site.js'
 import rally517 from '../assets/img/rally-517.webp'
 import styles from './RallyHero.module.css'
 
 export default function RallyHero() {
-  const photoRef = useRef(null)
-  useParallax(photoRef, 0.08)
   return (
     <section id="rally" className={styles.section} aria-labelledby="rally-titulo">
       <CarLines parts={['roof', 'belt']} viewBox="116 14 184 34" className={styles.lines} color="var(--rojo)" strokeWidth={3} opacity={0.55} />
@@ -30,7 +26,7 @@ export default function RallyHero() {
           </div>
         </div>
         <div className={styles.photoWrap} data-reveal="photo-r" data-delay="0.1">
-          <img ref={photoRef} className={styles.photo} src={rally517} alt={'Ford Ka N2 de los Torres en la "Cueva"'} width="1600" height="825" loading="lazy" data-zoom tabIndex={0} />
+          <img className={styles.photo} src={rally517} alt={'Ford Ka N2 de los Torres en la "Cueva"'} width="1600" height="825" loading="lazy" data-zoom tabIndex={0} />
         </div>
       </div>
       <div className={styles.stripes} data-reveal="sweep" data-delay="0.2"><Stripes /></div>

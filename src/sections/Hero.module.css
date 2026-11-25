@@ -79,8 +79,6 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: 70% 40%;
-  scale: 1.12;
-  translate: 0 var(--parallax, 0px);
 }
 .photo figcaption { padding-top: 12px; font-size: 15px; color: var(--texto-suave); }
 

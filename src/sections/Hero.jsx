@@ -1,5 +1,3 @@
-import { useRef } from 'react'
-import { useParallax } from '../hooks/scroll.js'
 import Button from '../components/Button.jsx'
 import CarLines from '../components/CarLines.jsx'
 import { contact, whatsappUrl } from '../data/site.js'
@@ -19,8 +17,6 @@ function PinIcon() {
 }
 
 export default function Hero() {
-  const photoRef = useRef(null)
-  useParallax(photoRef, 0.06)
   return (
     <section id="inicio" className={`peg ${styles.hero}`} aria-labelledby="inicio-titulo">
       <CarLines parts={['nose', 'roof', 'belt', 'hood']} viewBox="0 14 300 50" className={styles.lines} />
@@ -40,7 +36,7 @@ export default function Hero() {
         <figure className={styles.photo} data-reveal="pop" data-delay="0.35">
           <span className="tape" style={{ top: -14, left: '12%', transform: 'rotate(-6deg)' }} />
           <span className="tape" style={{ top: -14, right: '12%', transform: 'rotate(5deg)' }} />
-          <div className={styles.frame} ref={photoRef} data-reveal="photo" data-delay="0.55">
+          <div className={styles.frame} data-reveal="photo" data-delay="0.55">
             <img src={taller} alt="Cachi, el mecánico del taller, con la remera de William Rally Group junto a un auto" width="1600" height="825" fetchPriority="high" data-zoom="polaroid" tabIndex={0} />
           </div>
           <figcaption>Cachi, el mecánico.</figcaption>
