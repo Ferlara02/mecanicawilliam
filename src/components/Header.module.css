@@ -1,6 +1,11 @@
+/* El header va fijo y este bloque le guarda el lugar con su alto completo.
+   Así, cuando el header se achica al bajar, el resto de la página no se mueve. */
+.spacer { height: 101px; } /* 98 de barra + 3 de la línea dorada */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
   background: var(--header-bg);
   border-bottom: 3px solid var(--oro);
@@ -17,7 +22,9 @@
 }
 .brand { width: 210px; flex: 0 0 auto; transition: width 0.25s ease; }
 .compact .bar { padding-top: 6px; padding-bottom: 6px; }
-.compact .brand { width: 160px; }
+/* Anchos múltiplos de 3: el logo (300 × 100) queda con un alto entero en píxeles
+   y el botón del menú no cae en medio píxel (eso hacía "temblar" la línea del medio) */
+.compact .brand { width: 162px; }
 
 .panel { display: flex; align-items: center; gap: 28px; }
 .panel ul { display: flex; gap: 28px; list-style: none; padding: 0; }
@@ -64,7 +71,7 @@
   /* Un poco más corta que las llaves, para que no compita con sus bocas */
   width: 26px;
   height: 3px;
-  margin: -1.5px 0 0 -13px;
+  margin: -2px 0 0 -13px; /* arranca en un píxel entero: la línea se ve nítida */
   border-radius: 1.5px;
   background: var(--oro);
   transition: transform 0.3s ease, opacity 0.2s ease;
@@ -77,8 +84,9 @@
 
 /* ---------- Menú desplegable en celular ---------- */
 @media (max-width: 1000px) {
+  .spacer { height: 87px; }
   .toggle { display: block; }
-  .brand { width: 170px; }
+  .brand { width: 168px; }
 
   /* La nav es la "ventana" debajo del header; el panel cae desde arriba */
   .nav {

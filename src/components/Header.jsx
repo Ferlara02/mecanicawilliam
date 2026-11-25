@@ -45,6 +45,8 @@ export default function Header() {
   }, [open])
 
   return (
+    <>
+    <div className={styles.spacer} aria-hidden="true" />
     <header ref={headerRef} className={`${styles.header} ${compact ? styles.compact : ''}`}>
       <div className={`container ${styles.bar}`}>
         <a href="#inicio" className={styles.brand} aria-label="Mecánica William, ir al inicio">
@@ -80,5 +82,6 @@ export default function Header() {
         </nav>
       </div>
     </header>
+    </>
   )
 }
