@@ -8,7 +8,8 @@ import styles from './Header.module.css'
 // Llave fija de doble boca (viewBox 0 0 48 14). Dos de estas forman el botón del menú.
 // Las bocas se recortan con una máscara para que se vea lo que hay detrás.
 function Wrench({ className }) {
-  const id = useId()
+  // useId puede traer caracteres especiales: se limpian para usarlo dentro de url(#…)
+  const id = `wrench${useId().replace(/[^\w-]/g, '')}`
   return (
     <svg viewBox="0 0 48 14" className={className} aria-hidden="true">
       <defs>
@@ -20,7 +21,7 @@ function Wrench({ className }) {
           <rect x="40.6" y="4.75" width="9.4" height="4.5" rx="0.6" fill="#000" transform="rotate(-15 41.4 7)" />
         </mask>
       </defs>
-      <rect x="-5" y="-5" width="58" height="24" fill="var(--oro)" mask={`url(#${CSS.escape(id)})`} />
+      <rect x="-5" y="-5" width="58" height="24" fill="var(--oro)" mask={`url(#${id})`} />
     </svg>
   )
 }

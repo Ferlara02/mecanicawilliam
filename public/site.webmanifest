@@ -1,0 +1,14 @@
+{
+  "name": "Mecánica William",
+  "short_name": "Mecánica William",
+  "description": "Taller mecánico integral en Córdoba",
+  "lang": "es-AR",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#1d1b1e",
+  "theme_color": "#1d1b1e",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

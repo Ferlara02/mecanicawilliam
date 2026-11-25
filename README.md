@@ -20,6 +20,16 @@ La web se publica sola en Cloudflare Pages cada vez que se hace `git push` a `ma
 - Configuración en Cloudflare: comando de build `npm run build`, carpeta de salida `dist`. La versión de Node está fijada en `.node-version`.
 - `public/_headers` define la caché de los archivos y algunas cabeceras de seguridad.
 
+## SEO
+
+- **HTML prerenderizado**: `npm run build` compila la web y además arma el HTML completo de la página (`src/entry-server.jsx` + `scripts/prerender.js`). Google y las redes leen todo el contenido sin ejecutar JavaScript; en el navegador React lo "activa" (hidratación).
+- **Dirección pública**: `https://mecanicawilliam.pages.dev` por defecto. Con dominio propio, cargá `VITE_SITE_URL=https://tudominio.com` en `.env.local` y en Cloudflare Pages: se actualizan el canonical, la vista previa, los datos estructurados, `robots.txt` y `sitemap.xml`.
+- **Vista previa al compartir** (WhatsApp, Facebook, X, LinkedIn): `public/og.jpg` (1200 × 630) y las etiquetas `og:` y `twitter:` de `index.html`.
+- **Datos estructurados** (ficha de negocio para Google): `seo/structured-data.js`. Cuando estén confirmados los días de atención, completá `openingHoursSpecification` (hay un ejemplo comentado).
+- **robots.txt y sitemap.xml** se generan solos al compilar (`vite.config.js`).
+
+Después de publicar: agregá la web en [Google Search Console](https://search.google.com/search-console), enviá `sitemap.xml` y cargá la URL en la ficha de Google Maps del taller.
+
 ## Mapa de Google (pie de página)
 
 El mapa usa la **Maps Embed API** de Google si hay una clave cargada; si no, muestra el mapa embebido común (funciona igual, sin clave).
