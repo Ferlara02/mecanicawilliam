@@ -7,7 +7,7 @@ export function structuredData(siteUrl) {
     name: 'Mecánica William',
     alternateName: ['William Rally Group', 'William Competición'],
     description:
-      'Taller mecánico integral en Córdoba desde 1995. Service, motor, caja, tren delantero y frenos para autos de todas las marcas. Diagnóstico computarizado con scanners Autel y preparación de autos de rally.',
+      'Taller mecánico integral en Córdoba desde 1995. Service, motor, caja, tren delantero y frenos para autos de todas las marcas. Diagnóstico computarizado con scanners Autel y, como William Rally Group, preparación de autos de rally.',
     url: `${siteUrl}/`,
     image: [`${siteUrl}/og.jpg`],
     logo: `${siteUrl}/apple-touch-icon.png`,
@@ -29,7 +29,12 @@ export function structuredData(siteUrl) {
     //   { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '09:00', closes: '13:00' },
     //   { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '15:00', closes: '18:00' },
     // ],
-    sameAs: ['https://www.instagram.com/mecanicawilliam.wrg/', 'https://www.facebook.com/william.lara.5243'],
+    // Incluye la ficha de Google de "William Rally Group" (el mismo taller, con las opiniones)
+    sameAs: [
+      'https://www.instagram.com/mecanicawilliam.wrg/',
+      'https://www.facebook.com/william.lara.5243',
+      'https://www.google.com/maps/place/William+Rally+Group/@-31.3779731,-64.187757,17z/data=!4m5!3m4!1s0x943299750ea183f7:0xce0dbea59366b861!8m2!3d-31.3779731!4d-64.187757',
+    ],
     knowsAbout: ['Mecánica integral', 'Diagnóstico computarizado', 'Scanners Autel', 'Preparación de autos de rally'],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -51,6 +56,7 @@ export function structuredData(siteUrl) {
     '@id': `${siteUrl}/#web`,
     url: `${siteUrl}/`,
     name: 'Mecánica William',
+    alternateName: ['William Rally Group', 'Mecánica William Córdoba'],
     inLanguage: 'es-AR',
     publisher: { '@id': `${siteUrl}/#taller` },
   }
