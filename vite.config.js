@@ -4,7 +4,7 @@ import { structuredData } from './seo/structured-data.js'
 
 // Dirección pública de la web. Cuando tengas dominio propio, cargalo como VITE_SITE_URL
 // (en .env.local y en Cloudflare Pages) y todo el SEO se actualiza solo.
-const DEFAULT_SITE_URL = 'https://mecanicawilliam.pages.dev'
+const DEFAULT_SITE_URL = 'https://mecanicawilliam.com.ar'
 
 /** Completa los datos de SEO en index.html y genera robots.txt y sitemap.xml al compilar. */
 function seo(siteUrl) {

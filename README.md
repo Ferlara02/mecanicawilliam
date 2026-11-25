@@ -23,7 +23,7 @@ La web se publica sola en Cloudflare Pages cada vez que se hace `git push` a `ma
 ## SEO
 
 - **HTML prerenderizado**: `npm run build` compila la web y además arma el HTML completo de la página (`src/entry-server.jsx` + `scripts/prerender.js`). Google y las redes leen todo el contenido sin ejecutar JavaScript; en el navegador React lo "activa" (hidratación).
-- **Dirección pública**: `https://mecanicawilliam.pages.dev` por defecto. Con dominio propio, cargá `VITE_SITE_URL=https://tudominio.com` en `.env.local` y en Cloudflare Pages: se actualizan el canonical, la vista previa, los datos estructurados, `robots.txt` y `sitemap.xml`.
+- **Dirección pública**: `https://mecanicawilliam.com.ar` por defecto (en `vite.config.js`). Para usar otra, cargá `VITE_SITE_URL=https://otrodominio.com` en `.env.local` y en Cloudflare Pages: se actualizan el canonical, la vista previa, los datos estructurados, `robots.txt` y `sitemap.xml`.
 - **Vista previa al compartir** (WhatsApp, Facebook, X, LinkedIn): `public/og.jpg` (1200 × 630) y las etiquetas `og:` y `twitter:` de `index.html`.
 - **Datos estructurados** (ficha de negocio para Google): `seo/structured-data.js`. Cuando estén confirmados los días de atención, completá `openingHoursSpecification` (hay un ejemplo comentado).
 - **robots.txt y sitemap.xml** se generan solos al compilar (`vite.config.js`).
@@ -35,7 +35,7 @@ Después de publicar: agregá la web en [Google Search Console](https://search.g
 El mapa usa la **Maps Embed API** de Google si hay una clave cargada; si no, muestra el mapa embebido común (funciona igual, sin clave).
 
 1. En [Google Cloud Console](https://console.cloud.google.com/) creá un proyecto, activá **Maps Embed API** y creá una clave en *APIs y servicios → Credenciales*.
-2. Restringila: *Restricciones de aplicación → Sitios web* con `https://mecanica-william.pages.dev/*` (y tu dominio, y `http://localhost:5173/*` para desarrollo); *Restricciones de API → Maps Embed API*.
+2. Restringila: *Restricciones de aplicación → Sitios web* con `https://mecanicawilliam.com.ar/*`, `https://www.mecanicawilliam.com.ar/*` (y la dirección `.pages.dev`, y `http://localhost:5173/*` para desarrollo); *Restricciones de API → Maps Embed API*.
 3. Local: copiá `.env.example` como `.env.local` y completá `VITE_GOOGLE_MAPS_API_KEY`.
 4. Cloudflare Pages: *Settings → Variables and secrets* → agregá `VITE_GOOGLE_MAPS_API_KEY` (para Production y Preview) y volvé a desplegar.
 
