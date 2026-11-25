@@ -95,18 +95,24 @@ function createSpring(onFrame, { stiffness = 70, damping = 13, initial = 0 } = {
 /**
  * Progreso 0 → 1 de un elemento que entra en pantalla, con inercia.
  * Empieza cuando su borde superior toca `start` (fracción de la ventana desde arriba)
- * y termina cuando llega a `end`. No re-renderiza: escribe la variable CSS --p en el elemento.
+ * y termina cuando llega a `end`. No re-renderiza: llama a onProgress(valor) en cada cuadro
+ * (o, si no se pasa, escribe la variable CSS --p en el elemento).
  */
-export function useInViewProgress(ref, { start = 1, end = 0.3, disabled = false } = {}) {
+export function useInViewProgress(ref, { start = 1, end = 0.3, disabled = false, onProgress } = {}) {
   const reduced = useReducedMotion()
+  const cb = useRef(onProgress)
+  useEffect(() => {
+    cb.current = onProgress
+  })
   useEffect(() => {
     const el = ref.current
     if (!el || disabled) return
+    const emit = (v) => (cb.current ? cb.current(v) : el.style.setProperty('--p', v.toFixed(4)))
     if (reduced) {
-      el.style.setProperty('--p', '1')
+      emit(1)
       return
     }
-    const spring = createSpring((v) => el.style.setProperty('--p', v.toFixed(4)), { stiffness: 40, damping: 12 })
+    const spring = createSpring(emit, { stiffness: 40, damping: 12 })
     const unsub = subscribe(() => {
       const vh = window.innerHeight
       const top = el.getBoundingClientRect().top

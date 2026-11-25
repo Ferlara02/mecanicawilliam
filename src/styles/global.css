@@ -3,6 +3,9 @@
 *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); }
+/* Nada puede ensanchar la página: evita el scroll horizontal y el "zoom out" en celulares.
+   clip (y no hidden) para no romper las secciones fijas con position: sticky. */
+html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -13,7 +16,6 @@ body {
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 img, svg { display: block; max-width: 100%; }

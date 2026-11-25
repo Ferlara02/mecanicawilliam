@@ -3,6 +3,7 @@
   border-top: 3px solid var(--grafito);
   border-bottom: 3px solid var(--grafito);
   padding: 24px 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;

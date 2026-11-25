@@ -10,7 +10,7 @@ export default function Brands() {
         <h2 id="marcas-titulo" className="display">Todas las marcas</h2>
         <p>Nafta y diésel, nacionales e importados.</p>
       </div>
-      <div className={styles.viewport} data-reveal="right" data-delay="0.15">
+      <div className={styles.viewport} data-reveal="up" data-delay="0.15">
         <ul className={styles.track}>
           {loop.map((b, i) => (
             <li key={i} className={styles.chip} aria-hidden={i >= brands.length || undefined}>

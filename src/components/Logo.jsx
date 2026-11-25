@@ -4,14 +4,14 @@ import { CAR_PARTS } from './carParts.js'
 
 const LOGO_ORDER = ['hood', 'nose', 'roof', 'belt', 'accent', 'sillFront', 'sillRear', 'wheelFront', 'wheelRear']
 
-export function CarPart({ part, strokeWidth, ...rest }) {
+export function CarPart({ part, strokeWidth, ref, ...rest }) {
   const p = CAR_PARTS[part]
   const sw = strokeWidth ?? p.w
   if (p.ellipse) {
     const [cx, cy, rx, ry] = p.ellipse
-    return <ellipse cx={cx} cy={cy} rx={rx} ry={ry} strokeWidth={sw} {...rest} />
+    return <ellipse ref={ref} cx={cx} cy={cy} rx={rx} ry={ry} strokeWidth={sw} {...rest} />
   }
-  return <path d={p.d} strokeWidth={sw} {...rest} />
+  return <path ref={ref} d={p.d} strokeWidth={sw} {...rest} />
 }
 
 const DESCRIPTORS = {

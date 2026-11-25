@@ -6,9 +6,9 @@
   height: auto;
   max-width: none;
 }
-/* Cada trazo arranca un poco después del anterior (--d) y todos terminan juntos */
+/* Con pathLength="1", un guion de largo 1 cubre todo el trazo: el desplazamiento lo va mostrando */
 .lines path,
 .lines ellipse {
-  stroke-dasharray: 1;
-  stroke-dashoffset: clamp(0, calc(1 + var(--d) - var(--p, 1) * 1.6), 1);
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
 }
