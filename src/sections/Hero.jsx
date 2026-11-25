@@ -41,9 +41,9 @@ export default function Hero() {
           <span className="tape" style={{ top: -14, left: '12%', transform: 'rotate(-6deg)' }} />
           <span className="tape" style={{ top: -14, right: '12%', transform: 'rotate(5deg)' }} />
           <div className={styles.frame} ref={photoRef} data-reveal="photo" data-delay="0.55">
-            <img src={taller} alt="Mecánico del taller con la remera de William Rally Group junto a un auto" width="1600" height="825" fetchPriority="high" />
+            <img src={taller} alt="Cachi, el mecánico del taller, con la remera de William Rally Group junto a un auto" width="1600" height="825" fetchPriority="high" />
           </div>
-          <figcaption>El taller de Rodríguez Peña 3210.</figcaption>
+          <figcaption>Cachi, el mecánico.</figcaption>
         </figure>
 
         <div className={styles.body}>
