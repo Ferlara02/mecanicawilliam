@@ -174,6 +174,33 @@ export function useParallax(ref, speed = 0.08) {
   }, [ref, speed, reduced])
 }
 
+/**
+ * Sección del menú que se está mirando. groups: { '#servicios': ['servicios'], '#rally': ['rally', 'titulos'], … }
+ * Una sección está activa cuando cruza una línea a ~40 % del alto de la pantalla.
+ * Al llegar al final de la página se marca la última (el pie suele ser más bajo que la pantalla).
+ */
+export function useActiveSection(groups) {
+  const [active, setActive] = useState(null)
+  const groupsRef = useRef(groups)
+  useEffect(() => {
+    const entries = Object.entries(groupsRef.current)
+    return subscribe(() => {
+      const line = window.innerHeight * 0.4
+      let found = null
+      for (const [key, ids] of entries) {
+        for (const id of ids) {
+          const r = document.getElementById(id)?.getBoundingClientRect()
+          if (r && r.top <= line && r.bottom > line) found = key
+        }
+      }
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      if (atBottom) found = entries[entries.length - 1][0]
+      setActive(found)
+    })
+  }, [])
+  return active
+}
+
 export function useScrolledPast(px) {
   const [past, setPast] = useState(false)
   useEffect(() => subscribe(() => setPast(window.scrollY > px)), [px])

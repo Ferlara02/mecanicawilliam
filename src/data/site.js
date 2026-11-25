@@ -44,7 +44,7 @@ export const nav = [
   { href: '#servicios', label: 'Servicios' },
   { href: '#autel', label: 'Diagnóstico' },
   { href: '#trabajo', label: 'Cómo trabajamos' },
-  { href: '#rally', label: 'Rally' },
+  { href: '#rally', label: 'Rally', sections: ['rally', 'titulos'] },
   { href: '#contacto', label: 'Contacto' },
 ]
 

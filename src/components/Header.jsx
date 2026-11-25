@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Logo } from './Logo.jsx'
 import Button from './Button.jsx'
 import { nav, whatsappUrl } from '../data/site.js'
-import { useScrolledPast } from '../hooks/scroll.js'
+import { useActiveSection, useScrolledPast } from '../hooks/scroll.js'
 import styles from './Header.module.css'
 
 // Llave fija de doble boca (viewBox 0 0 48 14). Dos de estas, con una línea en el medio, forman el botón del menú.
@@ -28,6 +28,8 @@ function Wrench({ className }) {
 
 export default function Header() {
   const compact = useScrolledPast(40)
+  // Sección que se está mirando: su opción del menú se marca en dorado
+  const active = useActiveSection(Object.fromEntries(nav.map((n) => [n.href, n.sections ?? [n.href.slice(1)]])))
   const [open, setOpen] = useState(false)
   const headerRef = useRef(null)
 
@@ -71,7 +73,14 @@ export default function Header() {
             <ul>
               {nav.map((item, i) => (
                 <li key={item.href} style={{ '--i': i }}>
-                  <a href={item.href} onClick={() => setOpen(false)}>{item.label}</a>
+                  <a
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={active === item.href ? styles.active : undefined}
+                    aria-current={active === item.href ? 'location' : undefined}
+                  >
+                    {item.label}
+                  </a>
                 </li>
               ))}
             </ul>

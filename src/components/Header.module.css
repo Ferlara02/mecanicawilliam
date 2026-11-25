@@ -36,7 +36,9 @@
   padding: 8px 0;
   border-bottom: 2px solid transparent;
 }
-.panel ul a:hover { color: var(--oro); border-color: var(--oro); }
+.panel ul a { transition: color 0.2s ease, border-color 0.2s ease; }
+.panel ul a:hover,
+.panel ul a.active { color: var(--oro); border-color: var(--oro); }
 
 /* ---------- Botón de menú: tres llaves fijas ---------- */
 .toggle {
