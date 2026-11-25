@@ -2,12 +2,21 @@ import { useRef } from 'react'
 import { useParallax } from '../hooks/scroll.js'
 import Button from '../components/Button.jsx'
 import CarLines from '../components/CarLines.jsx'
-import { whatsappUrl } from '../data/site.js'
+import { contact, whatsappUrl } from '../data/site.js'
 import taller from '../assets/img/taller-mecanico.webp'
 import styles from './Hero.module.css'
 
 // Datos rápidos debajo de los botones
-const facts = ['Desde 1995 en Córdoba', 'Todas las marcas', 'Scanners Autel']
+const facts = ['Desde 1995', 'Todas las marcas', 'Scanners Autel']
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 30" aria-hidden="true" className={styles.pinIcon}>
+      <path d="M12 1.5C6.8 1.5 2.8 5.5 2.8 10.6c0 6.6 9.2 17.4 9.2 17.4s9.2-10.8 9.2-17.4C21.2 5.5 17.2 1.5 12 1.5z" fill="var(--oro)" stroke="var(--grafito)" strokeWidth="2.2" strokeLinejoin="round" />
+      <circle cx="12" cy="10.6" r="3.4" fill="var(--grafito)" />
+    </svg>
+  )
+}
 
 export default function Hero() {
   const photoRef = useRef(null)
@@ -18,7 +27,7 @@ export default function Hero() {
       <div className={`container ${styles.grid}`}>
         <div className={styles.head}>
           <span className="dymo" style={{ transform: 'rotate(-2deg)' }} data-reveal="left" data-delay="0.1">
-            Taller mecánico en Córdoba
+            Taller Mecánico
           </span>
           <h1 id="inicio-titulo" className={`display ${styles.title}`} data-reveal="title" data-delay="0.2">
             Mecánica integral
@@ -39,19 +48,24 @@ export default function Hero() {
 
         <div className={styles.body}>
           <p className={styles.text} data-reveal="up" data-delay="0.5">
-            Arreglamos autos de todas las marcas, nafta y diésel: service, motor, caja, tren delantero, frenos y
-            electricidad. Diagnosticamos con scanners Autel de última generación y te decimos qué tiene tu auto antes de
-            tocar nada.
+            Servicio mecánico integral: service, motor, caja, tren delantero, frenos. Diagnóstico computarizado con
+            scanners de última generación.
           </p>
           <div className={styles.actions} data-stagger="pop" data-delay="0.65" data-step="0.1">
             <Button href={whatsappUrl()}>Pedir turno por WhatsApp</Button>
             <Button href="#servicios" variant="grafito">Ver qué hacemos</Button>
           </div>
-          <ul className={styles.facts} data-stagger="up" data-delay="0.8" data-step="0.08">
-            {facts.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
+          <div className={styles.extra} data-stagger="up" data-delay="0.8" data-step="0.08">
+            <a href="#ubicacion" className={styles.pin}>
+              <PinIcon />
+              <span>{contact.shortAddress}</span>
+            </a>
+            <ul className={styles.facts}>
+              {facts.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

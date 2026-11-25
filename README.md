@@ -20,6 +20,17 @@ La web se publica sola en Cloudflare Pages cada vez que se hace `git push` a `ma
 - Configuración en Cloudflare: comando de build `npm run build`, carpeta de salida `dist`. La versión de Node está fijada en `.node-version`.
 - `public/_headers` define la caché de los archivos y algunas cabeceras de seguridad.
 
+## Mapa de Google (pie de página)
+
+El mapa usa la **Maps Embed API** de Google si hay una clave cargada; si no, muestra el mapa embebido común (funciona igual, sin clave).
+
+1. En [Google Cloud Console](https://console.cloud.google.com/) creá un proyecto, activá **Maps Embed API** y creá una clave en *APIs y servicios → Credenciales*.
+2. Restringila: *Restricciones de aplicación → Sitios web* con `https://mecanica-william.pages.dev/*` (y tu dominio, y `http://localhost:5173/*` para desarrollo); *Restricciones de API → Maps Embed API*.
+3. Local: copiá `.env.example` como `.env.local` y completá `VITE_GOOGLE_MAPS_API_KEY`.
+4. Cloudflare Pages: *Settings → Variables and secrets* → agregá `VITE_GOOGLE_MAPS_API_KEY` (para Production y Preview) y volvé a desplegar.
+
+La búsqueda del mapa se cambia en `contact.mapQuery` (`src/data/site.js`).
+
 ## Dónde cambiar cada cosa
 
 | Qué | Dónde |

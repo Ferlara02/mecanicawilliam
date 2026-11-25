@@ -21,9 +21,15 @@ export const contact = {
   instagram: { handle: '@williamcompeticion', url: 'https://www.instagram.com/williamcompeticion/' },
   facebook: { url: 'https://www.facebook.com/william.lara.5243' },
   address: ['N. Rodríguez Peña 3210', 'X5000 Córdoba'],
-  mapsUrl: 'https://goo.gl/maps/kLdKAVBGRqQvY9Zb9',
-  hours: '[HORARIO DE ATENCIÓN]', // TODO: completar
-  reviewsUrl: 'https://www.google.com/search?q=william+rally+group',
+  // "Cómo llegar": abre Google Maps con el recorrido hasta el taller
+  mapsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('William Rally Group, N. Rodríguez Peña 3210, Córdoba')}`,
+  // Lo que se busca en Google Maps para el mapa del pie de página
+  mapQuery: 'Mecánica William, Nicolás Rodríguez Peña 3210, Córdoba, Argentina',
+  shortAddress: 'Rodríguez Peña 3210, Córdoba',
+  // Horario cortado: cada línea se muestra por separado
+  hours: ['Mañana: 9 a 13 hs', 'Tarde: 15 a 18 hs'],
+  // Ficha del taller en Google Maps (ahí están las opiniones). En Google figura como "William Rally Group".
+  reviewsUrl: 'https://www.google.com.ar/maps/place/William+Rally+Group/@-31.3779719,-64.1883137,19z/data=!4m5!3m4!1s0x943299750ea183f7:0xce0dbea59366b861!8m2!3d-31.3779731!4d-64.187757',
 }
 
 export const whatsappUrl = (message = contact.whatsappMessage) =>

@@ -34,6 +34,26 @@
 }
 .actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
+.extra { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+/* Pin de ubicación: lleva al mapa del pie de página */
+.pin {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--grafito);
+  font-weight: 800;
+  font-size: 17px;
+  text-decoration: underline;
+  text-decoration-color: var(--oro);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+.pin:hover { color: var(--grafito); text-decoration-color: var(--grafito); }
+.pinIcon { width: 26px; height: auto; flex: 0 0 auto; transform-origin: 50% 100%; }
+.pin:hover .pinIcon { animation: pin-hop 0.6s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes pin-hop { 40% { transform: translateY(-6px) scaleY(1.05); } }
+@media (prefers-reduced-motion: reduce) { .pin:hover .pinIcon { animation: none; } }
 .facts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; font-weight: 700; font-size: 15px; }
 .facts li { display: flex; align-items: center; gap: 9px; }
 .facts li::before {
@@ -84,5 +104,6 @@
   .photo :global(.tape) { width: 52px; height: 18px; top: -9px !important; }
   .text { font-size: 17px; padding: 16px 18px; }
   .facts { font-size: 14px; gap: 8px 16px; }
+  .pin { font-size: 16px; }
   .lines { right: -30%; width: 150%; bottom: -24px; }
 }

@@ -14,15 +14,20 @@
 .viewport { overflow: hidden; }
 .track {
   display: flex;
-  gap: 16px;
   width: max-content;
-  list-style: none;
-  padding: 0;
+  animation: marquee 90s linear infinite;
+}
+/* Cada tramo lleva el espacio entre logos también al final, así el empalme queda exacto */
+.group {
+  display: flex;
+  gap: 16px;
+  padding: 0 16px 0 0;
   margin: 0;
-  animation: marquee 36s linear infinite;
+  list-style: none;
+  flex: 0 0 auto;
 }
 .viewport:hover .track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(calc(-50% - 8px)); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
 .chip {
   flex: 0 0 auto;
   width: 150px;
@@ -36,6 +41,7 @@
 }
 .chip img { max-width: 104px; max-height: 58px; width: auto; height: auto; object-fit: contain; }
 @media (prefers-reduced-motion: reduce) {
-  .track { animation: none; flex-wrap: wrap; width: auto; padding: 0 var(--gutter); }
-  .chip[aria-hidden='true'] { display: none; }
+  .track { animation: none; width: auto; padding: 0 var(--gutter); }
+  .group { flex-wrap: wrap; padding: 0; }
+  .group[aria-hidden='true'], .chip[aria-hidden='true'] { display: none; }
 }

@@ -45,4 +45,8 @@
   .tool { max-width: 110px; }
   .shadow { left: 4px; top: 4px; }
 }
+@media (max-width: 360px) {
+  .item :global(.dymo) { font-size: 10px; letter-spacing: 0.04em; hyphens: auto; overflow-wrap: anywhere; }
+  .item p { font-size: 13px; }
+}
 @media (max-width: 860px) { .lines { display: none; } }

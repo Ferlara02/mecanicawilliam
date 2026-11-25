@@ -1,4 +1,4 @@
-.section { position: relative; overflow: hidden; background: var(--rojo); color: var(--blanco); padding-top: calc(var(--section-y) + 8px); margin-top: -24px; }
+.section { position: relative; overflow: hidden; isolation: isolate; background: var(--rojo); color: var(--blanco); padding-top: calc(var(--section-y) + 8px); margin-top: -24px; }
 .lines { right: -14%; bottom: 120px; width: 72%; }
 .head { align-items: end; margin-bottom: 56px; }
 .headLeft { display: flex; flex-direction: column; gap: 20px; }

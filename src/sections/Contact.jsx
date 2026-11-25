@@ -1,5 +1,6 @@
 import Button from '../components/Button.jsx'
 import CarLines from '../components/CarLines.jsx'
+import GoogleMap from '../components/GoogleMap.jsx'
 import { Logo } from '../components/Logo.jsx'
 import { contact, whatsappUrl } from '../data/site.js'
 import styles from './Contact.module.css'
@@ -25,24 +26,31 @@ export default function Contact() {
             <Button href={whatsappUrl()}>WhatsApp {contact.whatsappLabel}</Button>
           </div>
         </div>
-        <div className={`grid-3 ${styles.info}`} data-stagger="up" data-delay="0.1" data-step="0.1">
-          <div>
-            <h3>Dónde estamos</h3>
-            <address>{contact.address.map((l) => <span key={l}>{l}<br /></span>)}</address>
-            <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+
+        <div id="ubicacion" className={styles.place}>
+          <div className={styles.info} data-stagger="up" data-delay="0.1" data-step="0.1">
+            <div>
+              <h3>Dónde estamos</h3>
+              <address>{contact.address.map((l) => <span key={l}>{l}<br /></span>)}</address>
+              <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+            </div>
+            <div>
+              <h3>Horarios</h3>
+              <p>{contact.hours.map((h) => <span key={h}>{h}<br /></span>)}</p>
+            </div>
+            <div>
+              <h3>Redes</h3>
+              <p className={styles.links}>
+                <a href={contact.instagram.url} target="_blank" rel="noopener noreferrer">Instagram {contact.instagram.handle}</a>
+                <a href={contact.facebook.url} target="_blank" rel="noopener noreferrer">Facebook</a>
+              </p>
+            </div>
           </div>
-          <div>
-            <h3>Horarios</h3>
-            <p>{contact.hours}</p>
-          </div>
-          <div>
-            <h3>Redes</h3>
-            <p className={styles.links}>
-              <a href={contact.instagram.url} target="_blank" rel="noopener noreferrer">Instagram {contact.instagram.handle}</a>
-              <a href={contact.facebook.url} target="_blank" rel="noopener noreferrer">Facebook</a>
-            </p>
+          <div className={styles.map} data-reveal="up" data-delay="0.2">
+            <GoogleMap query={contact.mapQuery} title="Ubicación de Mecánica William en Google Maps" />
           </div>
         </div>
+
         <div className={styles.bottom}>
           <div className={styles.logo} data-reveal="left"><Logo descriptor="mecanica" /></div>
           <p>© {YEAR} Mecánica William. Córdoba, Argentina.</p>

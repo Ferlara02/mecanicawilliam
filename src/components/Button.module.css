@@ -9,6 +9,7 @@
   font-weight: 800;
   font-size: 19px;
   text-decoration: none;
+  white-space: nowrap;
   clip-path: polygon(var(--skew) 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
   /* transform y filter: hover. opacity, translate y scale: animación de entrada (reveal.css) */
   transition:
@@ -29,3 +30,8 @@
 .rojo:hover { color: var(--blanco); }
 .blanco { background: var(--blanco); color: var(--grafito); }
 .blanco:hover { color: var(--grafito); }
+
+/* Pantallas muy chicas: un poco más compactos para que entren en una línea */
+@media (max-width: 380px) {
+  .btn { font-size: 16px; padding: 0 22px; min-height: 50px; --skew: 10px; }
+}
