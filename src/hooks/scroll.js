@@ -130,7 +130,7 @@ export function useInViewProgress(ref, { start = 1, end = 0.3, disabled = false,
  * el valor no sigue al scroll 1:1, lo persigue con un resorte y se pasa un poquito antes de asentarse.
  * map: transforma el progreso del scroll antes de suavizarlo.
  */
-export function usePinProgress(ref, { map = (x) => x, stiffness = 60, damping = 11 } = {}) {
+export function usePinProgress(ref, { map = (x) => x, stiffness = 60, damping = 11, direct = false } = {}) {
   const [p, setP] = useState(0)
   const reduced = useReducedMotion()
   const mapRef = useRef(map)
@@ -140,17 +140,20 @@ export function usePinProgress(ref, { map = (x) => x, stiffness = 60, damping = 
   useEffect(() => {
     const el = ref.current
     if (!el || reduced) return
-    const spring = createSpring(setP, { stiffness, damping })
+    // direct: el valor sigue al scroll cuadro a cuadro, sin inercia (en celular se siente pegado al dedo)
+    const spring = direct ? null : createSpring(setP, { stiffness, damping })
     const unsub = subscribe(() => {
       const rect = el.getBoundingClientRect()
       const travel = rect.height - window.innerHeight
-      spring.set(mapRef.current(travel > 0 ? clamp01(-rect.top / travel) : 1))
+      const v = mapRef.current(travel > 0 ? clamp01(-rect.top / travel) : 1)
+      if (spring) spring.set(v)
+      else setP(v)
     })
     return () => {
       unsub()
-      spring.stop()
+      spring?.stop()
     }
-  }, [ref, reduced, stiffness, damping])
+  }, [ref, reduced, stiffness, damping, direct])
   return reduced ? 1 : p
 }
 

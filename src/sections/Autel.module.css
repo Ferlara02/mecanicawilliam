@@ -1,6 +1,6 @@
 .section { background: var(--grafito); color: var(--blanco); position: relative; }
 /* Altura de la sección = cuánto scroll dura la apertura de la maleta */
-.track { height: 280vh; position: relative; }
+.track { height: 340vh; position: relative; }
 .sticky {
   position: sticky;
   top: var(--header-h);
@@ -58,7 +58,7 @@
   .quote { display: none; }
 }
 @media (max-width: 860px) {
-  .track { height: 220vh; }
+  .track { height: 370vh; }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .steps { gap: 6px; }
   .steps li { font-size: 12px; }

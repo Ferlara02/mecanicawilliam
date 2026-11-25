@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import SectionTitle from '../components/SectionTitle.jsx'
 import CarLines from '../components/CarLines.jsx'
 import AutelCase from '../components/AutelCase.jsx'
-import { stageIndex } from '../components/autelStages.js'
+import { STAGES_TOUCH, stageIndex } from '../components/autelStages.js'
 import { usePinProgress, useMediaQuery } from '../hooks/scroll.js'
 import { autelStages } from '../data/site.js'
 import styles from './Autel.module.css'
@@ -28,10 +28,22 @@ function Copy() {
 
 export default function Autel() {
   const ref = useRef(null)
-  // La maleta no sigue al scroll 1:1: lo persigue con inercia y termina de abrirse antes del final de la sección.
-  const caseP = usePinProgress(ref, { map: (x) => Math.min(1, x / 0.8), stiffness: 45, damping: 10 })
   const mobile = useMediaQuery('(max-width: 860px)')
-  const active = stageIndex(caseP)
+  // La apertura sigue al scroll: avanza y retrocede a medida que bajás o subís.
+  // En celular va pegada al dedo. En compu lleva un suavizado muy corto y sin rebote,
+  // solo para que los saltos de la ruedita del mouse no se vean a los tirones.
+  // Primero se abre (hasta OPEN del recorrido) y después la maleta entera sube flotando
+  // mientras la sección sigue fija, antes de pasar a la siguiente.
+  const OPEN = 0.66
+  const raw = usePinProgress(ref, {
+    map: (x) => x / OPEN,
+    stiffness: 220,
+    damping: 30,
+    direct: mobile,
+  })
+  const caseP = Math.min(1, raw)
+  const lift = Math.max(0, Math.min(1, (raw - 1) / ((1 - OPEN) / OPEN) / 0.85))
+  const active = stageIndex(caseP, STAGES_TOUCH)
 
   return (
     <section id="autel" className={styles.section} aria-labelledby="autel-titulo">
@@ -55,7 +67,7 @@ export default function Autel() {
           <div className={`container ${styles.grid}`}>
             {!mobile && <Copy />}
             <div className={styles.stage} data-reveal="pop" data-delay="0.15">
-              <AutelCase progress={caseP} />
+              <AutelCase progress={caseP} lift={lift} direct />
               <ol className={styles.steps} aria-label="Etapas de la apertura">
                 {autelStages.map((label, i) => (
                   <li key={label} className={i === active ? styles.on : i < active ? styles.done : ''} aria-current={i === active ? 'step' : undefined}>

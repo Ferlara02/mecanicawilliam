@@ -15,15 +15,17 @@ const COLORS = {
   plateText: '#dfba69',
 }
 
-import { STAGES, clamp01, ease, easeBack, stage } from './autelStages.js'
+import { STAGES, STAGES_TOUCH, clamp01, ease, easeBack, easeInOutSine, stage } from './autelStages.js'
 
 const pivotY = (y, k) => `translate(0 ${y}) scale(1 ${k.toFixed(3)}) translate(0 ${-y})`
 
-function compute(p) {
-  const t1 = easeBack(stage(p, STAGES.latches), 2)
-  const t2 = easeBack(ease(stage(p, STAGES.lid)) , 0.9)
-  const t3 = easeBack(stage(p, STAGES.tablet), 1.2)
-  const t4 = stage(p, STAGES.screen)
+function compute(p, direct) {
+  // direct (celular): movimientos parejos que siguen al dedo; si no, con peso y rebote
+  const S = direct ? STAGES_TOUCH : STAGES
+  const t1 = direct ? easeInOutSine(stage(p, S.latches)) : easeBack(stage(p, S.latches), 2)
+  const t2 = direct ? easeInOutSine(stage(p, S.lid)) : easeBack(ease(stage(p, S.lid)), 0.9)
+  const t3 = direct ? easeInOutSine(stage(p, S.tablet)) : easeBack(stage(p, S.tablet), 1.2)
+  const t4 = stage(p, S.screen)
   // La tapa gira sobre la bisagra trasera: de 1 (cerrada) a -0.62 (abierta, vista desde arriba)
   const s = 1 - 1.62 * t2
   const sl = Math.abs(s) < 0.02 ? (s < 0 ? -0.02 : 0.02) : s
@@ -46,12 +48,20 @@ function compute(p) {
   }
 }
 
-export default function AutelCase({ progress = 1, colors, className = '' }) {
+// lift (0 a 1): ya abierta, la maleta entera sube y queda flotando; la sombra se achica y se aclara.
+export default function AutelCase({ progress = 1, direct = false, lift = 0, colors, className = '' }) {
   const c = { ...COLORS, ...colors }
-  const v = compute(clamp01(progress))
+  const v = compute(clamp01(progress), direct)
+  // Sube rápido al principio y se frena arriba, como si quedara suspendida
+  const lf = 1 - Math.pow(1 - clamp01(lift), 2)
   return (
     <svg viewBox="0 0 640 560" className={className} role="img" aria-label="Maleta del scanner Autel abriéndose" style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
-      <ellipse cx="320" cy="512" rx="270" ry="22" fill="#000000" opacity="0.28"></ellipse>
+      <ellipse
+        cx="320" cy="512" rx="270" ry="22" fill="#000000"
+        opacity={(0.28 * (1 - 0.55 * lf)).toFixed(3)}
+        transform={`translate(320 512) scale(${(1 - 0.3 * lf).toFixed(3)}) translate(-320 -512)`}
+      ></ellipse>
+      <g transform={`translate(320 ${(300 - 120 * lf).toFixed(1)}) scale(${(1 + 0.05 * lf).toFixed(3)}) translate(-320 -300)`}>
       <rect x="80" y="440" width="480" height="58" rx="22" fill={c.shellDark}></rect>
       <rect x="80" y="210" width="480" height="270" rx="26" fill={c.shell}></rect>
       <rect x="102" y="228" width="436" height="234" rx="14" fill={c.foam}></rect>
@@ -148,6 +158,7 @@ export default function AutelCase({ progress = 1, colors, className = '' }) {
       <g transform={v.latchRT}>
         <rect x="426" y="452" width="46" height="34" rx="7" fill={c.accent}></rect>
         <rect x="436" y="462" width="26" height="6" rx="3" fill={c.shellDark}></rect>
+      </g>
       </g>
     </svg>
   )
