@@ -1,9 +1,14 @@
 .frame {
   position: relative;
+  width: 100%;
   border: 3px solid var(--oro);
   border-radius: var(--radius);
   overflow: hidden;
   background: #2a2a2a;
+}
+.mapBox {
+  position: relative;
+  width: 100%;
   aspect-ratio: 16 / 10;
   min-height: 260px;
 }
@@ -14,4 +19,16 @@
   height: 100%;
   border: 0;
   display: block;
+}
+
+/* Celular: el mapa ocupa todo el ancho de la pantalla, así Google tiene lugar para su tarjeta */
+@media (max-width: 600px) {
+  .frame {
+    width: auto;
+    margin: 0 calc(-1 * var(--gutter));
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+  .mapBox { aspect-ratio: auto; height: 320px; min-height: 0; }
 }

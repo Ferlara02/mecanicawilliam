@@ -47,13 +47,21 @@ export default function Contact() {
             </div>
           </div>
           <div className={styles.map} data-reveal="up" data-delay="0.2">
-            <GoogleMap query={contact.mapQuery} title="Ubicación de Mecánica William en Google Maps" />
+            <GoogleMap
+              query={contact.mapQuery}
+              embedUrl={contact.mapEmbedUrl}
+              title="Ubicación de Mecánica William en Google Maps"
+            />
           </div>
         </div>
 
         <div className={styles.bottom}>
           <div className={styles.logo} data-reveal="left"><Logo descriptor="mecanica" /></div>
           <p>© {YEAR} Mecánica William. Córdoba, Argentina.</p>
+          <p className={styles.credit}>
+            Desarrollado por{' '}
+            <a href="https://www.linkedin.com/in/fernando-lara-/" target="_blank" rel="noopener noreferrer">Fernando Lara</a>
+          </p>
         </div>
       </div>
     </footer>

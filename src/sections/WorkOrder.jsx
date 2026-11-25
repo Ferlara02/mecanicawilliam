@@ -10,7 +10,7 @@ export default function WorkOrder() {
       <div className="container grid-2">
         <div className={styles.intro}>
           <SectionTitle>Así trabajamos con tu auto.</SectionTitle>
-          <p className="lead" data-reveal="up" data-delay="0.2">Cada auto que entra tiene su orden de trabajo. La vas a ver completa antes de pagar.</p>
+          <p className="lead" data-reveal="up" data-delay="0.2">Cada auto que entra tiene su orden de trabajo.</p>
         </div>
         <div className={styles.sheet} data-reveal="right" data-delay="0.1">
           <div className={styles.sheetHead}>

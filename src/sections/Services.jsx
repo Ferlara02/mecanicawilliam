@@ -13,11 +13,11 @@ export default function Services() {
       <div className="container">
         <div className={`grid-2 ${styles.head}`}>
           <SectionTitle>Hacemos todo. Del service al motor completo.</SectionTitle>
-          <p className="lead" data-reveal="up" data-delay="0.2">No derivamos tu auto a otro taller: todas las marcas y todos los trabajos, en el mismo lugar y con el mismo equipo.</p>
+          <p className="lead" data-reveal="up" data-delay="0.2">Todas las marcas y todos los trabajos, con el mismo equipo de principio a fin.</p>
         </div>
         <ul className={`peg ${styles.board}`} data-reveal="up" data-delay="0.1">
           {services.map((s, i) => (
-            <li key={s.name} className={styles.item} data-reveal="pop" style={{ '--d': `${0.15 + (i % 3) * 0.1 + Math.floor(i / 3) * 0.05}s` }}>
+            <li key={s.name} className={styles.item} data-reveal="pop" style={{ '--d': `${0.15 + (i % 4) * 0.08 + Math.floor(i / 4) * 0.05}s` }}>
               <div className={styles.tool}>
                 <ToolIcon name={s.tool} color="var(--oro)" strokeWidth={7} className={styles.shadow} />
                 <ToolIcon name={s.tool} color="var(--grafito)" />

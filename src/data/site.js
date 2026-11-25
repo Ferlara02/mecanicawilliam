@@ -18,13 +18,18 @@ export const contact = {
   whatsappNumber: '5493516534162',
   whatsappLabel: '351 653-4162',
   whatsappMessage: 'Hola, quiero pedir un turno para mi auto.',
-  instagram: { handle: '@williamcompeticion', url: 'https://www.instagram.com/williamcompeticion/' },
+  instagram: { handle: '@mecanicawilliam.wrg', url: 'https://www.instagram.com/mecanicawilliam.wrg/' },
   facebook: { url: 'https://www.facebook.com/william.lara.5243' },
   address: ['N. Rodríguez Peña 3210', 'X5000 Córdoba'],
   // "Cómo llegar": abre Google Maps con el recorrido hasta el taller
-  mapsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('William Rally Group, N. Rodríguez Peña 3210, Córdoba')}`,
+  mapsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Mecánica William, N. Rodríguez Peña 3210, Córdoba')}`,
   // Lo que se busca en Google Maps para el mapa del pie de página
   mapQuery: 'Mecánica William, Nicolás Rodríguez Peña 3210, Córdoba, Argentina',
+  // Ficha de Google "Mecánica William" (la de las opiniones es la de "William Rally Group": reviewsUrl)
+  placeUrl: 'https://www.google.com/maps/place/Mec%C3%A1nica+William/@-31.3779728,-64.187795,17z/data=!4m6!3m5!1s0x943299ade1c05895:0xbb695036ef995c02!8m2!3d-31.3779728!4d-64.187795!16s%2Fg%2F11npbk4s3h',
+  // Mapa embebido de esa ficha: abre con la tarjeta del lugar ya seleccionada
+  mapEmbedUrl:
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d850!2d-64.187795!3d-31.3779728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943299ade1c05895%3A0xbb695036ef995c02!2zTWVjw6FuaWNhIFdpbGxpYW0!5e0!3m2!1ses-419!2sar!4v1764084000000!5m2!1ses-419!2sar',
   shortAddress: 'Rodríguez Peña 3210, Córdoba',
   // Horario cortado: cada línea se muestra por separado
   hours: ['Mañana: 9 a 13 hs', 'Tarde: 15 a 18 hs'],
@@ -58,11 +63,10 @@ export const services = [
   { tool: 'vaso', name: 'Service y mantenimiento', text: 'Aceite, filtros, correas, bombas, pastillas y juntas. Te asesoramos entre repuestos originales y segundas marcas según lo que quieras gastar.' },
   { tool: 'crique', name: 'Diagnóstico computarizado', text: 'Scanners Autel: lectura de fallas, sensores y desconfiguraciones de la computadora del auto.' },
   { tool: 'llave', name: 'Reparación ante rotura', text: 'Reemplazamos solo la pieza rota y te contamos cada paso.' },
-  { tool: 'bujia', name: 'Motor', text: 'Armado completo: desarme, medición, rectificado de cilindros y cigüeñal, puesta a punto.' },
-  { tool: 'cruz', name: 'Caja y embrague', text: 'Reparación y cambio de embrague, caja manual y transmisión.' },
+  { tool: 'bujia', name: 'Motor', text: 'Desarme y armado completo. La medición y el rectificado los hacemos con rectificadoras amigas de confianza.' },
+  { tool: 'cruz', name: 'Embrague', text: 'Cambio de embrague.' },
   { tool: 'destornillador', name: 'Tren delantero y suspensión', text: 'Rótulas, extremos, amortiguadores, bujes y alineación.' },
   { tool: 'llave', name: 'Frenos', text: 'Pastillas, discos, campanas, bomba y líquido.' },
-  { tool: 'bujia', name: 'Inyección y electricidad', text: 'Sensores, inyectores, encendido y cableado.' },
   { tool: 'crique', name: 'Autos de rally', text: 'Preparación y armado de motor de competición según parámetros FIA.' },
 ]
 

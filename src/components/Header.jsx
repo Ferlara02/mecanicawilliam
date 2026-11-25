@@ -5,7 +5,7 @@ import { nav, whatsappUrl } from '../data/site.js'
 import { useScrolledPast } from '../hooks/scroll.js'
 import styles from './Header.module.css'
 
-// Llave fija de doble boca (viewBox 0 0 48 14). Dos de estas forman el botón del menú.
+// Llave fija de doble boca (viewBox 0 0 48 14). Dos de estas, con una línea en el medio, forman el botón del menú.
 // Las bocas se recortan con una máscara para que se vea lo que hay detrás.
 function Wrench({ className }) {
   // useId puede traer caracteres especiales: se limpian para usarlo dentro de url(#…)
@@ -60,6 +60,7 @@ export default function Header() {
         >
           <span className="visually-hidden">{open ? 'Cerrar menú' : 'Abrir menú'}</span>
           <Wrench className={`${styles.wrench} ${styles.wrenchTop}`} />
+          <span className={styles.line} aria-hidden="true" />
           <Wrench className={`${styles.wrench} ${styles.wrenchBottom}`} />
         </button>
 
